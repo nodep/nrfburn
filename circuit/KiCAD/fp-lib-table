@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name nrfburn)(type KiCad)(uri "$(KIPRJMOD)\\nrfburn.pretty")(options "")(descr ""))
+  (lib (name oshw_logo)(type Legacy)(uri ${KIPRJMOD}\\OSHW-logo.mod)(options "")(descr ""))
+)
