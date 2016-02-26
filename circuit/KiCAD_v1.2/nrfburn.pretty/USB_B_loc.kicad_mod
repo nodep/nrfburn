@@ -1,4 +1,4 @@
-(module USB_B (layer F.Cu) (tedit 556EF876)
+(module USB_B_loc (layer F.Cu) (tedit 556EF876)
   (tags USB)
   (fp_text reference J1 (at 4.826 -5.715) (layer F.SilkS)
     (effects (font (size 0.8128 0.8128) (thickness 0.1524)))

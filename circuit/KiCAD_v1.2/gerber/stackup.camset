@@ -3,34 +3,34 @@
 	<thisfile>.\stackup.camset</thisfile>
 	<boardlayers>
 		<layer type="Silkscreen" H="35" Er="0.000">
-			<filename>.\nrfburn-F_SilkS.gto</filename>
-			<filedisp>nrfburn-F_SilkS.gto</filedisp>
+			<filename>.\nrfburn-F.SilkS.gto</filename>
+			<filedisp>nrfburn-F.SilkS.gto</filedisp>
 		</layer>
 		<layer type="SolderMask" H="35" Er="0.000">
-			<filename>.\nrfburn-F_Mask.gts</filename>
-			<filedisp>nrfburn-F_Mask.gts</filedisp>
+			<filename>.\nrfburn-F.Mask.gts</filename>
+			<filedisp>nrfburn-F.Mask.gts</filedisp>
 		</layer>
 		<layer type="Copper" H="35" Negative="DefaultPositive">
-			<filename>.\nrfburn-F_Cu.gtl</filename>
-			<filedisp>nrfburn-F_Cu.gtl</filedisp>
+			<filename>.\nrfburn-F.Cu.gtl</filename>
+			<filedisp>nrfburn-F.Cu.gtl</filedisp>
 		</layer>
 		<layer type="Prepreg" H="1390" Er="4.800">
 		</layer>
 		<layer type="Copper" H="35" Negative="DefaultPositive">
-			<filename>.\nrfburn-B_Cu.gbl</filename>
-			<filedisp>nrfburn-B_Cu.gbl</filedisp>
+			<filename>.\nrfburn-B.Cu.gbl</filename>
+			<filedisp>nrfburn-B.Cu.gbl</filedisp>
 		</layer>
 		<layer type="SolderMask" H="35" Er="0.000">
-			<filename>.\nrfburn-B_Mask.gbs</filename>
-			<filedisp>nrfburn-B_Mask.gbs</filedisp>
+			<filename>.\nrfburn-B.Mask.gbs</filename>
+			<filedisp>nrfburn-B.Mask.gbs</filedisp>
 		</layer>
 		<layer type="Silkscreen" H="35" Er="0.000">
-			<filename>.\nrfburn-B_SilkS.gbo</filename>
-			<filedisp>nrfburn-B_SilkS.gbo</filedisp>
+			<filename>.\nrfburn-B.SilkS.gbo</filename>
+			<filedisp>nrfburn-B.SilkS.gbo</filedisp>
 		</layer>
 		<layer type="BoardOutline" H="1600">
-			<filename>.\nrfburn-Edge_Cuts.gbr</filename>
-			<filedisp>nrfburn-Edge_Cuts.gbr</filedisp>
+			<filename>.\nrfburn-Edge.Cuts.gm1</filename>
+			<filedisp>nrfburn-Edge.Cuts.gm1</filedisp>
 		</layer>
 	</boardlayers>
 

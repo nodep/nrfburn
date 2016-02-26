@@ -14,7 +14,7 @@ It has connectors with pin configurations which allow two popular nRF24LU1+ brea
 
 It also has an 8 pin flat cable connector through which it can flash nRF24LE1 devices as an in-system programmer.
 
-The DBG_LU1 output can be used as a UART debug output from the nRF24LU1+ dongle.
+The DBG_LU1 output can be used as a UART debug output from the nRF24LU1+ dongle. There are also two LEDs (DBG1 and DBG2) which can be driven from the SparkFun breakout. This is also useful for debugging.
 
 ### The firmware
 
