@@ -22,4 +22,4 @@ The flasher firmware communicates with the host PC though [obdev's V-USB](https:
 
 ### The host PC
 
-The programm running on the host PC is a cross-platform (Windows and Linux) command line tool. It does not need special OS drivers because all communication is done through the USB HID class. It's been tested on Windows 7, 8 and 10 and on Linux running on Hardkernel's Odroid X2 board.
+The program running on the host PC is a cross-platform (Windows and Linux) command line tool. It does not need special OS drivers because all communication is done through the USB HID class. It's been tested on Windows 7, 8 and 10 and on Linux running on Hardkernel's Odroid X2 board.
