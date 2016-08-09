@@ -11,13 +11,11 @@
 #include <string>
 
 #include "hiddev.h"
-//#include "../firmware/prg_common.h"
 
 #define USBOPEN_SUCCESS         0   	// no error
 #define USBOPEN_ERR_ACCESS      1   	// not enough permissions to open device
 #define USBOPEN_ERR_IO          2   	// I/O error
 #define USBOPEN_ERR_NOTFOUND    3   	// device not found
-
 
 #ifdef DEBUG
 #define DEBUG_PRINT(arg)    printf arg
@@ -25,6 +23,9 @@
 #define DEBUG_PRINT(arg)
 #endif
 
+#define LOG_HID_TRAFFIC
+
+#include "utils.h"
 
 /* ######################################################################## */
 #ifdef WIN32 /* ******##################################################### */
@@ -48,8 +49,19 @@ static void convertUniToAscii(char* buffer)
 		*ascii++ = *uni > 0xff ? '?' : *uni;
 		uni++;
 	}
-	
+
 	*ascii++ = '\0';
+}
+
+void log_str(const std::string& str)
+{
+	static FILE* fLog = NULL;
+	
+	if (fLog == NULL)
+		fLog = fopen("nrfburn.txt", "a");
+	
+	if (fLog)
+		fprintf(fLog, str.c_str());
 }
 
 std::string GetErrorString(int error)
@@ -70,7 +82,7 @@ std::string GetErrorString(int error)
 
 	return ret_val;
 }
-		
+
 int usbhidOpenDevice(usbDevice_t** device, int vendor, const char* vendorName, int product, const char* productName)
 {
 	GUID                                hidGuid;        	// GUID for HID driver
@@ -103,23 +115,23 @@ int usbhidOpenDevice(usbDevice_t** device, int vendor, const char* vendorName, i
 			free(deviceDetails);
 		deviceDetails = (SP_DEVICE_INTERFACE_DETAIL_DATA*) malloc(size);
 		deviceDetails->cbSize = sizeof(*deviceDetails);
-		
+
 		// this call is for real:
 		SetupDiGetDeviceInterfaceDetail(deviceInfoList, &deviceInfo, deviceDetails, size, &size, NULL);
-		DEBUG_PRINT(("checking HID path \"%s\"\n", deviceDetails->DevicePath));
+		//log_str("checking HID path " + std::string(deviceDetails->DevicePath) + "\n");
 
 		// attempt opening for R/W -- we don't care about devices which can't be accessed
 		handle = CreateFile(deviceDetails->DevicePath, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, openFlag, NULL);
 		if (handle == INVALID_HANDLE_VALUE)
 		{
-			DEBUG_PRINT(("opening failed: %d\n", (int)GetLastError()));
+			//log_str("opening failed: " + GetErrorString(GetLastError()) + "\n");
 			// errorCode = USBOPEN_ERR_ACCESS; opening will always fail for mouse -- ignore
 			continue;
 		}
-		
+
 		deviceAttributes.Size = sizeof(deviceAttributes);
 		HidD_GetAttributes(handle, &deviceAttributes);
-		DEBUG_PRINT(("device attributes: vid=%d pid=%d\n", deviceAttributes.VendorID, deviceAttributes.ProductID));
+		//log_str("device attributes: vid=" + int2str(deviceAttributes.VendorID) + " pid=" + int2str(deviceAttributes.ProductID) + "\n");
 		if (deviceAttributes.VendorID != vendor || deviceAttributes.ProductID != product)
 			continue;   // ignore this device
 
@@ -129,39 +141,39 @@ int usbhidOpenDevice(usbDevice_t** device, int vendor, const char* vendorName, i
 			char buffer[512];
 			if (!HidD_GetManufacturerString(handle, buffer, sizeof(buffer)))
 			{
-				DEBUG_PRINT(("error obtaining vendor name\n"));
+				log_str("error obtaining vendor name\n");
 				errorCode = USBOPEN_ERR_IO;
 				continue;
 			}
 
 			convertUniToAscii(buffer);
 
-			DEBUG_PRINT(("vendorName = \"%s\"\n", buffer));
+			log_str("vendorName = " + std::string(buffer) + "\n");
 			if (strcmp(vendorName, buffer) != 0)
 				continue;
 
 			if (!HidD_GetProductString(handle, buffer, sizeof(buffer)))
 			{
-				DEBUG_PRINT(("error obtaining product name\n"));
+				log_str("error obtaining product name\n");
 				errorCode = USBOPEN_ERR_IO;
 				continue;
 			}
-			
+
 			convertUniToAscii(buffer);
-			
-			DEBUG_PRINT(("productName = \"%s\"\n", buffer));
+
+			log_str("productName = " + std::string(buffer) + "\n");
 			if (strcmp(productName, buffer) != 0)
 				continue;
 		}
 
 		break;  // we have found the device we are looking for!
 	}
-	
+
 	SetupDiDestroyDeviceInfoList(deviceInfoList);
-	
+
 	if (deviceDetails != NULL)
 		free(deviceDetails);
-		
+
 	if (handle != INVALID_HANDLE_VALUE)
 	{
 		*device = (usbDevice_t*)handle;
@@ -179,6 +191,9 @@ void usbhidCloseDevice(usbDevice_t* device)
 int usbhidSetReport(usbDevice_t* device, char* buffer, int len)
 {
 	BOOLEAN rval = HidD_SetFeature((HANDLE)device, buffer, len);
+	if (rval == FALSE)
+		log_str("--- HidD_SetFeature(); GetLastError() == " + GetErrorString(GetLastError()) + "\n");
+
 	return rval == 0 ? USBOPEN_ERR_IO : USBOPEN_SUCCESS;
 }
 
@@ -186,6 +201,9 @@ int usbhidGetReport(usbDevice_t* device, int reportNumber, char* buffer, int* le
 {
 	buffer[0] = reportNumber;
 	BOOLEAN rval = HidD_GetFeature((HANDLE)device, buffer, *len);
+	if (rval == FALSE)
+		log_str("--- HidD_GetFeature(); GetLastError() == " + GetErrorString(GetLastError()) + "\n");
+	
 	return rval == 0 ? USBOPEN_ERR_IO : USBOPEN_SUCCESS;
 }
 
@@ -211,35 +229,35 @@ static int usbhidGetStringAscii(usb_dev_handle* dev, int index, char* buf, int b
 
 	if ((rval = usb_get_string_simple(dev, index, buf, buflen)) >= 0)		// use libusb version if it works
 		return rval;
-		
+
 	if ((rval = usb_control_msg(dev, USB_ENDPOINT_IN, USB_REQ_GET_DESCRIPTOR, (USB_DT_STRING << 8) + index, 0x0409, buffer, sizeof(buffer), 5000)) < 0)
 		return rval;
-		
+
 	if (buffer[1] != USB_DT_STRING)
 	{
 		*buf = 0;
 		return 0;
 	}
-	
+
 	if ((unsigned char)buffer[0] < rval)
 		rval = (unsigned char) buffer[0];
 
 	rval /= 2;
-	
+
 	// lossy conversion to ISO Latin1:
 	for (i = 1; i < rval; i++)
 	{
 		if (i > buflen)			// destination buffer overflow
 			break;
-			
+
 		buf[i - 1] = buffer[2 * i];
-		
+
 		if (buffer[2 * i + 1] != 0)		// outside of ISO Latin1 range
 			buf[i - 1] = '?';
 	}
-	
+
 	buf[i - 1] = 0;
-	
+
 	return i - 1;
 }
 
@@ -259,7 +277,7 @@ int usbhidOpenDevice(usbDevice_t** device, int vendor, const char* vendorName, i
 
 	usb_find_busses();
 	usb_find_devices();
-	
+
 	for (bus = usb_get_busses(); bus; bus = bus->next)
 	{
 		for (dev = bus->devices; dev; dev = dev->next)
@@ -275,7 +293,7 @@ int usbhidOpenDevice(usbDevice_t** device, int vendor, const char* vendorName, i
 					DEBUG_PRINT(("Warning: cannot open USB device: %s\n", usb_strerror()));
 					continue;
 				}
-				
+
 				if (vendorName == NULL && productName == NULL)  // name does not matter
 					break;
 
@@ -305,17 +323,17 @@ int usbhidOpenDevice(usbDevice_t** device, int vendor, const char* vendorName, i
 				handle = NULL;
 			}
 		}
-		
+
 		if (handle)
 			break;
 	}
-	
+
 	if (handle != NULL)
 	{
 		errorCode = USBOPEN_SUCCESS;
 		*device = (usbDevice_t*)handle;
 	}
-		
+
 	return errorCode;
 }
 
@@ -334,10 +352,10 @@ int usbhidSetReport(usbDevice_t* device, char* buffer, int len)
 	{
 		if (bytesSent < 0)
 			DEBUG_PRINT((stderr, "Error sending message: %s\n", usb_strerror()));
-			
+
 		return USBOPEN_ERR_IO;
 	}
-	
+
 	return USBOPEN_SUCCESS;
 }
 
@@ -353,7 +371,7 @@ int usbhidGetReport(usbDevice_t* device, int reportNumber, char* buffer, int* le
 	}
 
 	*len = bytesReceived;
-	
+
 	return USBOPEN_SUCCESS;
 }
 
@@ -377,34 +395,34 @@ bool HIDDevice::Open(uint16_t vendor_id, const char* vendor_name, uint16_t devic
 	return usbhidOpenDevice(&hHIDDev, vendor_id, vendor_name, device_id, device_name) == 0;
 }
 
-//#define LOG_HID_TRAFFIC
-
 void HIDDevice::GetReport(uint8_t* buffer, int report_size, uint8_t report_id)
 {
+	log_str("-- into GetRep\n");
 	int buff_size = report_size + 1;
 	char rcvBuff[buff_size];
 	int res = usbhidGetReport(hHIDDev, report_id, rcvBuff, &buff_size);
 	if (res != USBOPEN_SUCCESS)
-		throw std::string("Unable to read data from HID device");
+	{
+		log_str("Unable to read data from programmer.\n");
+		throw std::string("Unable to read data from programmer");
+	}
 
 	memcpy(buffer, rcvBuff + 1, report_size);
-	
-#ifdef LOG_HID_TRAFFIC
-	printf("-- Rep ");
+
+	log_str("-- GetRep ");
 	for (int c = 0; c < report_size; ++c)
-		printf("%02x ", buffer[c]);
-	printf("\n");
-#endif	
+		log_str(int2hex(buffer[c]) + " ");
+	log_str("\n");
+	
+	log_str("-- out of GetRep\n");
 }
 
 void HIDDevice::SetReport(const uint8_t* buffer, int bytes, int report_size, uint8_t report_id)
 {
-#ifdef LOG_HID_TRAFFIC
-	printf("-- W  ");
+	log_str("-- SetRep ");
 	for (int c = 0; c < bytes; ++c)
-		printf("%02x ", buffer[c]);
-	printf("\n");
-#endif	
+		log_str(int2hex(buffer[c]) + " ");
+	log_str("\n");
 
 	// alloc and clear the buffer
 	int buff_size = report_size + 1;
@@ -414,8 +432,13 @@ void HIDDevice::SetReport(const uint8_t* buffer, int bytes, int report_size, uin
 	// set the report ID and the data
 	sendbuff[0] = report_id;
 	memcpy(sendbuff + 1, buffer, bytes);
-		
+
 	int result = usbhidSetReport(hHIDDev, sendbuff, buff_size);
 	if (result != USBOPEN_SUCCESS)
+	{
+		log_str("Unable to send data to programmer.\n");
 		throw std::string("Unable to send data to programmer.");
+	}
+	
+	log_str("-- out of SetRep\n");
 }
