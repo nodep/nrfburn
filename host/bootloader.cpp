@@ -4,7 +4,7 @@
 #include <time.h>
 
 #include <string>
-#include <memory>
+#include <vector>
 
 #include "hiddev.h"
 #include "flashmem.h"

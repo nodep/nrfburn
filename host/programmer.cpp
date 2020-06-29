@@ -5,7 +5,7 @@
 #include <time.h>
 
 #include <string>
-#include <memory>
+#include <vector>
 
 // for vendor and device names and IDs
 #include "../firmware/usbconfig.h"

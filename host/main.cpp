@@ -5,7 +5,7 @@
 #include <time.h>
 
 #include <string>
-#include <memory>
+#include <vector>
 
 #include "programmer.h"
 #include "flashmem.h"

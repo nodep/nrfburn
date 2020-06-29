@@ -5,7 +5,7 @@
 #include <errno.h>
 
 #include <string>
-#include <memory>
+#include <vector>
 
 #include "flashmem.h"
 #include "utils.h"
@@ -55,16 +55,13 @@ std::string FlashMemory::WordToHex(const uint16_t b)
 }
 
 FlashMemory::FlashMemory(const int fs)
-: flashSize(fs)
+: flashSize(fs), flashBuffer(flashSize, 0xff)
 {
-	flashBuffer.reset(new uint8_t[flashSize]);
-
-	Clear();
 }
 
 void FlashMemory::Clear()
 {
-	memset(flashBuffer.get(), 0xff, flashSize);
+	std::fill(flashBuffer.begin(), flashBuffer.end(), 0xff);
 }
 
 void FlashMemory::LoadHex(const std::string& filename)
@@ -84,25 +81,25 @@ void FlashMemory::LoadHex(const std::string& filename)
 	}
 
 	// make a buffer large enough for the entire file
-	std::auto_ptr<char> fbuff(new char[file_size + 1]);
+	std::vector<char> fbuff(file_size + 1, 0);
 
 	// load the entire hex file in one chunk
 	fseek(fhex, 0, SEEK_SET);
-	int bytes_read = fread(fbuff.get(), 1, file_size, fhex);
+	int bytes_read = fread(&fbuff.front(), 1, file_size, fhex);
 
 	fclose(fhex);
 
 	if (bytes_read != file_size)
 		throw std::string("Unable to read HEX file.");
 
-	fbuff.get()[bytes_read] = '\0';
+	fbuff[bytes_read] = '\0';
 
 	// reset before loading
 	Clear();
 
 	bool eof_reached = false;
-	const char* pHex = fbuff.get();
-	uint8_t* pFlash = flashBuffer.get();
+	const char* pHex = &fbuff.front();
+	uint8_t* pFlash = &flashBuffer.front();
 	int line_num = 0;
 	do {
 		// check the colon
@@ -157,7 +154,7 @@ void FlashMemory::SaveHex(const std::string& filename) const
 	std::string hex;
 
 	int address = 0;
-	const uint8_t* pFlash = flashBuffer.get();
+	const uint8_t* pFlash = &flashBuffer.front();
 	while (address < flashSize)
 	{
 		int rec_bytes = flashSize - address;
@@ -219,7 +216,7 @@ void FlashMemory::SaveHex(const std::string& filename) const
 
 int FlashMemory::GetFlashLastByte() const
 {
-	const uint8_t* pBuff = flashBuffer.get();
+	const uint8_t* pBuff = &flashBuffer.front();
 	int cnt;
 	for (cnt = GetFlashSize() - 1; cnt > 0; --cnt)
 	{
@@ -236,5 +233,5 @@ const bool FlashMemory::operator == (const FlashMemory& lhs) const
 	if (flashSize != lhs.flashSize)
 		return false;
 	
-	return memcmp(flashBuffer.get(), lhs.flashBuffer.get(), flashSize) == 0;
+	return std::equal(flashBuffer.begin(), flashBuffer.end(), lhs.flashBuffer.begin());
 }

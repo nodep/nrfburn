@@ -14,7 +14,7 @@ private:
 	static std::string WordToHex(const uint16_t b);
 
 	const int				flashSize;
-	std::auto_ptr<uint8_t>	flashBuffer;
+	std::vector<uint8_t>	flashBuffer;
 
 public:
 	explicit FlashMemory(const int fs);
@@ -27,12 +27,12 @@ public:
 
 	uint8_t* GetFlash()
 	{
-		return flashBuffer.get();
+		return &flashBuffer.front();
 	}
 	
 	const uint8_t* GetFlash() const
 	{
-		return flashBuffer.get();
+		return &flashBuffer.front();
 	}
 	
 	int GetFlashSize() const
