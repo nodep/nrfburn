@@ -349,7 +349,7 @@
 		(roundrect_rratio 0.25)
 		(uuid "77f54b8f-d0c8-4825-ab93-34644b3d7783")
 	)
-	(model "smd/tqfp32.wrl"
+	(model "${KIPRJMOD}/nrfburn.pretty/models/TQFP-32_7x7mm_P0.8mm.wrl"
 		(offset
 			(xyz 0 0 0)
 		)

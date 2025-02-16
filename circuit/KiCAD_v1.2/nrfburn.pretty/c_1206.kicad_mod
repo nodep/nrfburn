@@ -100,7 +100,7 @@
 		(roundrect_rratio 0.1388888889)
 		(uuid "95ed9ff6-3fd4-4e44-be31-b5e1994bf4b3")
 	)
-	(model "smd/capacitors/c_1206.wrl"
+	(model "${KIPRJMOD}/nrfburn.pretty/models/C_1206_3216Metric.wrl"
 		(offset
 			(xyz 0 0 0)
 		)

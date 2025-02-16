@@ -191,4 +191,15 @@
 		(remove_unused_layers no)
 		(uuid "a579e8df-1d89-4036-bd6e-d5ff0f5ebc57")
 	)
+	(model "${KIPRJMOD}/nrfburn.pretty/models/PinHeader_2x03_P2.54mm_Vertical.wrl"
+		(offset
+			(xyz -1.27 2.54 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )

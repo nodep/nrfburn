@@ -126,15 +126,15 @@
 		(roundrect_rratio 0.25)
 		(uuid "13d9d734-be81-4735-951f-968ee2459cf5")
 	)
-	(model "smd\\SOT23_3.wrl"
+	(model "${KIPRJMOD}/nrfburn.pretty/models/SOT-23.wrl"
 		(offset
 			(xyz 0 0 0)
 		)
 		(scale
-			(xyz 0.4 0.4 0.4)
+			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 180)
+			(xyz 0 0 -90)
 		)
 	)
 )

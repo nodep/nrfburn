@@ -16,7 +16,7 @@
 			)
 		)
 	)
-	(property "Value" "LU1_PRG_SPRKFN"
+	(property "Value" "Val*"
 		(at 0 2 0)
 		(layer "F.SilkS")
 		(uuid "e99ce969-d365-4af7-8a80-56efffb4f674")
@@ -215,15 +215,15 @@
 		(remove_unused_layers no)
 		(uuid "6887383c-d894-4e8a-9ef1-e3f380050864")
 	)
-	(model "Pin_Headers/Pin_Header_Straight_1x10.wrl"
+	(model "${KIPRJMOD}/nrfburn.pretty/models/PinHeader_1x10_P2.54mm_Vertical.wrl"
 		(offset
-			(xyz 0 0 0)
+			(xyz 11.43 0 0)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 0)
+			(xyz 0 0 90)
 		)
 	)
 )

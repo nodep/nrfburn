@@ -173,15 +173,15 @@
 		(remove_unused_layers no)
 		(uuid "c18820d5-cc48-48d5-9cb9-5bc0f9f0226d")
 	)
-	(model "Connectors/USB_type_B.wrl"
+	(model "${KIPRJMOD}/nrfburn.pretty/models/USB type-B female PCB.STEP"
 		(offset
-			(xyz 0 0 0.02539999962)
+			(xyz -6.05 6.35 0)
 		)
 		(scale
-			(xyz 0.3937 0.3937 0.3937)
+			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 0)
+			(xyz -90 0 0)
 		)
 	)
 )

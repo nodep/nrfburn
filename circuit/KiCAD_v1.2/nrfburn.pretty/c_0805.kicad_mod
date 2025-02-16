@@ -100,4 +100,15 @@
 		(roundrect_rratio 0.2083333333)
 		(uuid "8c75c532-23e3-4c26-851d-8b6e3da6e583")
 	)
+	(model "${KIPRJMOD}/nrfburn.pretty/models/C_0805_2012Metric.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )

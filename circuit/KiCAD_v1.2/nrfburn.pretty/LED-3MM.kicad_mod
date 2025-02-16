@@ -145,15 +145,15 @@
 		(roundrect_rratio 0.15625)
 		(uuid "9d70ebe6-dba0-437c-9df3-6bffa4dca757")
 	)
-	(model "discret/leds/led3_vertical_verde.wrl"
+	(model "${KIPRJMOD}/nrfburn.pretty/models/LED_D3.0mm_Clear.wrl"
 		(offset
-			(xyz 0 0 0)
+			(xyz 1.27 0 0)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 0)
+			(xyz 0 0 180)
 		)
 	)
 )
