@@ -1,23 +1,159 @@
-(module LED-3MM (layer F.Cu) (tedit 557181CC)
-  (descr "LED 3mm - Lead pitch 100mil (2,54mm)")
-  (tags "LED led 3mm 3MM 100mil 2,54mm")
-  (fp_text reference Ref* (at 0 0 90) (layer Dwgs.User)
-    (effects (font (size 0.8128 0.8128) (thickness 0.1524)))
-  )
-  (fp_text value Val* (at -2.921 0.127 90) (layer F.SilkS)
-    (effects (font (size 0.8128 0.8128) (thickness 0.1524)))
-  )
-  (fp_line (start 1.8288 -1.27) (end 1.8288 -0.889) (layer F.SilkS) (width 0.1524))
-  (fp_line (start 1.8288 1.27) (end 1.8288 0.889) (layer F.SilkS) (width 0.1524))
-  (fp_arc (start 0.254 0) (end 0.254 -2.032) (angle 50.1) (layer F.SilkS) (width 0.1524))
-  (fp_arc (start 0.254 0) (end -1.5367 -0.95504) (angle 61.9) (layer F.SilkS) (width 0.1524))
-  (fp_arc (start 0.254 0) (end 1.8034 1.31064) (angle 49.7) (layer F.SilkS) (width 0.1524))
-  (fp_arc (start 0.254 0) (end 0.254 2.032) (angle 60.2) (layer F.SilkS) (width 0.1524))
-  (pad 1 thru_hole circle (at -1.27 0) (size 1.6 1.6) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
-  (pad 2 thru_hole rect (at 1.27 0) (size 1.6 1.6) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
-  (model discret/leds/led3_vertical_verde.wrl
-    (at (xyz 0 0 0))
-    (scale (xyz 1 1 1))
-    (rotate (xyz 0 0 0))
-  )
+(footprint "LED-3MM"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "LED 3mm - Lead pitch 100mil (2,54mm)")
+	(tags "LED led 3mm 3MM 100mil 2,54mm")
+	(property "Reference" "Ref*"
+		(at 0 0 90)
+		(layer "Dwgs.User")
+		(uuid "0d2fdc31-187b-4c78-8fd5-22bde5052f09")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "Val*"
+		(at -2.921 0.127 90)
+		(layer "F.SilkS")
+		(uuid "9f7edfab-19eb-4d4c-98eb-d6c50229213b")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f15900a0-d985-4b1b-b72a-7ec76237e0bb")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d39f5781-ada4-45e1-9ae0-d61955000b58")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "74829a3c-5803-4e7c-9e87-8a6ee41c4987")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start 1.8288 -1.27)
+		(end 1.8288 -0.889)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "cbafac09-0e58-4e70-bf36-992c313c98a7")
+	)
+	(fp_line
+		(start 1.8288 1.27)
+		(end 1.8288 0.889)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "74048a2c-a039-4101-8ce7-72dca0307c47")
+	)
+	(fp_arc
+		(start -1.5367 -0.95504)
+		(mid -0.790567 -1.739997)
+		(end 0.253025 -2.02946)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "29e6ada0-4dbe-4163-958b-06cfff8af41d")
+	)
+	(fp_arc
+		(start 0.254 -2.032)
+		(mid 1.114367 -1.840867)
+		(end 1.81288 -1.303426)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "40802735-a51c-4534-a2c5-73ff7a838ec8")
+	)
+	(fp_arc
+		(start 0.254 2.032)
+		(mid -0.76507 1.757988)
+		(end -1.509299 1.009851)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "59aeb4b1-0925-49fc-ad41-e0bc15ae28bd")
+	)
+	(fp_arc
+		(start 1.8034 1.31064)
+		(mid 1.109154 1.840416)
+		(end 0.256552 2.029387)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "1819fd96-b6f4-4c9f-9233-fc9b8934b4e3")
+	)
+	(pad "1" thru_hole circle
+		(at -1.27 0)
+		(size 1.6 1.6)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7da8fd0e-59ea-4c37-bad2-76ef76b5abd5")
+	)
+	(pad "2" thru_hole roundrect
+		(at 1.27 0)
+		(size 1.6 1.6)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(roundrect_rratio 0.15625)
+		(uuid "9d70ebe6-dba0-437c-9df3-6bffa4dca757")
+	)
+	(model "discret/leds/led3_vertical_verde.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )

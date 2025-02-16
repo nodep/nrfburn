@@ -1,18 +1,114 @@
-(module c_1206 (layer F.Cu) (tedit 56A09FF0)
-  (descr "SMT capacitor, 1206")
-  (fp_text reference C2 (at -3.048 0 90) (layer F.SilkS)
-    (effects (font (size 0.8128 0.8128) (thickness 0.1524)))
-  )
-  (fp_text value 1uF (at 3.048 0 90) (layer F.SilkS) hide
-    (effects (font (size 0.8128 0.8128) (thickness 0.1524)))
-  )
-  (fp_line (start -1.6002 1.0668) (end 1.6002 1.0668) (layer F.SilkS) (width 0.127))
-  (fp_line (start 1.6002 -1.0668) (end -1.6002 -1.0668) (layer F.SilkS) (width 0.127))
-  (pad 1 smd rect (at 1.5 0) (size 1.8 1.8) (layers F.Cu F.Paste F.Mask))
-  (pad 2 smd rect (at -1.5 0) (size 1.8 1.8) (layers F.Cu F.Paste F.Mask))
-  (model smd/capacitors/c_1206.wrl
-    (at (xyz 0 0 0))
-    (scale (xyz 1 1 1))
-    (rotate (xyz 0 0 0))
-  )
+(footprint "c_1206"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "SMT capacitor, 1206")
+	(property "Reference" "Ref*"
+		(at -3.048 0 90)
+		(layer "F.SilkS")
+		(uuid "3a2db6c8-3e10-40da-81df-bf8316e2abd1")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+				(bold yes)
+			)
+		)
+	)
+	(property "Value" "Val*"
+		(at 3.048 0 90)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "d1b88b34-0b59-4bf8-98bf-67b89e67dcfa")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+				(bold yes)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f45ece1d-7e30-47c0-8e07-25de0a71853b")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "840358a5-892c-4ec0-9729-d0b187f95ac6")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e007da9d-2778-4b39-ba96-2f0c8b1dcfcb")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -1.6002 1.0668)
+		(end 1.6002 1.0668)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "1b089ab9-cf75-4b6c-bfca-24fe6fdb2464")
+	)
+	(fp_line
+		(start 1.6002 -1.0668)
+		(end -1.6002 -1.0668)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "8ecb6333-84ea-47cd-9bab-2b33d9dae4ab")
+	)
+	(pad "1" smd roundrect
+		(at 1.5 0)
+		(size 1.8 1.8)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.1388888889)
+		(uuid "8908c110-53fa-45c5-a540-8afb7c263e75")
+	)
+	(pad "2" smd roundrect
+		(at -1.5 0)
+		(size 1.8 1.8)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.1388888889)
+		(uuid "95ed9ff6-3fd4-4e44-be31-b5e1994bf4b3")
+	)
+	(model "smd/capacitors/c_1206.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )

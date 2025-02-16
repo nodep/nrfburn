@@ -1,18 +1,144 @@
-(module Resistor_Horizontal_RM10mm (layer F.Cu) (tedit 55759A7B)
-  (descr "Resistor, Axial,  RM 10mm, 1/3W,")
-  (tags "Resistor, Axial, RM 10mm, 1/3W,")
-  (fp_text reference Ref* (at 0 0) (layer F.SilkS)
-    (effects (font (size 0.8128 0.8128) (thickness 0.1524)))
-  )
-  (fp_text value Val* (at 0 1.75) (layer Dwgs.User) hide
-    (effects (font (size 0.8128 0.8128) (thickness 0.1524)))
-  )
-  (fp_line (start 3 0) (end 3.75 0) (layer F.SilkS) (width 0.1524))
-  (fp_line (start -3 0) (end -3.75 0) (layer F.SilkS) (width 0.1524))
-  (fp_line (start 3 1) (end 3 -1) (layer F.SilkS) (width 0.1524))
-  (fp_line (start 3 -1) (end -3 -1) (layer F.SilkS) (width 0.1524))
-  (fp_line (start -3 -1) (end -3 1) (layer F.SilkS) (width 0.1524))
-  (fp_line (start -3 1) (end 3 1) (layer F.SilkS) (width 0.1524))
-  (pad 1 thru_hole circle (at -5.08 0) (size 1.5 1.5) (drill 0.8) (layers *.Cu *.SilkS *.Mask))
-  (pad 2 thru_hole circle (at 5.08 0) (size 1.5 1.5) (drill 0.8) (layers *.Cu *.SilkS *.Mask))
+(footprint "Resistor_Horizontal_RM10mm"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "Resistor, Axial,  RM 10mm, 1/3W,")
+	(tags "Resistor, Axial, RM 10mm, 1/3W,")
+	(property "Reference" "Ref*"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "683f9039-c153-414c-960b-505147f42e9d")
+		(effects
+			(font
+				(size 0.8128 0.8128)
+				(thickness 0.1524)
+			)
+		)
+	)
+	(property "Value" "Val*"
+		(at 0 1.75 0)
+		(layer "Dwgs.User")
+		(hide yes)
+		(uuid "18538683-fe81-4ced-98ac-bf5c1641e882")
+		(effects
+			(font
+				(size 0.8128 0.8128)
+				(thickness 0.1524)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1daa1fd4-d868-4c0a-918c-8f198ab73777")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2be05ed4-a418-4094-b6d3-96d7b976ff15")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "eefe610d-36a2-4608-923c-c268fbb2cf3b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -3 -1)
+		(end -3 1)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "19c8b5fa-4dde-43a8-8426-57f814215924")
+	)
+	(fp_line
+		(start -3 0)
+		(end -3.75 0)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "a424281e-d9b3-44fc-b6e5-9da3085b1cea")
+	)
+	(fp_line
+		(start -3 1)
+		(end 3 1)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "fa25c00c-010a-41b3-a4c6-cc9c2be53cf0")
+	)
+	(fp_line
+		(start 3 -1)
+		(end -3 -1)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "47844b49-e851-4d9d-b7ca-f6386e906e06")
+	)
+	(fp_line
+		(start 3 0)
+		(end 3.75 0)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e7da31cd-dac3-41bc-a3b7-6dc9c725b54f")
+	)
+	(fp_line
+		(start 3 1)
+		(end 3 -1)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "7f0fbcd4-fcd3-4bbe-bebc-124839b4aacf")
+	)
+	(pad "1" thru_hole circle
+		(at -5.08 0)
+		(size 1.5 1.5)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "93062371-6b1e-41b6-9fc7-69d75c2b0460")
+	)
+	(pad "2" thru_hole circle
+		(at 5.08 0)
+		(size 1.5 1.5)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "5f87c1cb-5774-41f6-aa5c-9672715ba9cd")
+	)
 )

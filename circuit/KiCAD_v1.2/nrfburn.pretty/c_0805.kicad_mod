@@ -1,15 +1,103 @@
-(module Capacitor_SMD0805_HandSoldering (layer F.Cu) (tedit 555B0036)
-  (descr "Capacitor, SMD, 0805, Hand soldering,")
-  (tags "Capacitor, SMD, 0805, Hand soldering,")
-  (attr smd)
-  (fp_text reference C1 (at 2.794 0 90) (layer F.SilkS)
-    (effects (font (size 0.8128 0.8128) (thickness 0.1524)))
-  )
-  (fp_text value 4.7uF (at 0 1.5) (layer F.SilkS) hide
-    (effects (font (size 0.8128 0.8128) (thickness 0.1016)))
-  )
-  (fp_line (start -1.5 0.8) (end 1.5 0.8) (layer F.SilkS) (width 0.1524))
-  (fp_line (start -1.5 -0.8) (end 1.5 -0.8) (layer F.SilkS) (width 0.1524))
-  (pad 1 smd rect (at -1.30048 0) (size 1.5 1.2) (layers F.Cu F.Paste F.Mask))
-  (pad 2 smd rect (at 1.30048 0) (size 1.5 1.2) (layers F.Cu F.Paste F.Mask))
+(footprint "c_0805"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "Capacitor, SMD, 0805, Hand soldering,")
+	(tags "Capacitor, SMD, 0805, Hand soldering,")
+	(property "Reference" "Ref*"
+		(at 2.794 0 90)
+		(layer "F.SilkS")
+		(uuid "e993b652-1292-4745-83e6-4c1957fd4551")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "Val*"
+		(at -2.54 0 90)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "4b0d8a26-7a6f-41c5-8e08-b58b674c74f5")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+				(bold yes)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "dc06713b-1304-4d6a-9cf8-42d3ed22752b")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "218b3381-e4f0-4bed-833b-92dab780bfa4")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9c2d4c70-ab01-47f0-8cef-5f33d4442b27")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -1.5 -0.8)
+		(end 1.5 -0.8)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "08b5bc44-159d-4e6a-9d05-a669bd3ab641")
+	)
+	(fp_line
+		(start -1.5 0.8)
+		(end 1.5 0.8)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "961c4077-9b25-4d72-bd4a-6b63b93e0bf0")
+	)
+	(pad "1" smd roundrect
+		(at -1.30048 0)
+		(size 1.5 1.2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.2083333333)
+		(uuid "f779116a-d801-40f3-9d22-a753f74ad78f")
+	)
+	(pad "2" smd roundrect
+		(at 1.30048 0)
+		(size 1.5 1.2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.2083333333)
+		(uuid "8c75c532-23e3-4c26-851d-8b6e3da6e583")
+	)
 )
